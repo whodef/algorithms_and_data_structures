@@ -3,7 +3,7 @@
 
 ___
 
-## [Semantic Commit Messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
+## Semantic Commit Messages
 See how a minor change to your commit message style can make you a better programmer.
 
 Format: `<type>(<scope>): <subject>`
@@ -33,6 +33,17 @@ More Examples:
 - `chore`: updating grunt tasks etc; no production code change
 - `perf`: a commit that improves performance, without functional changes
 - or `build`, `ci`, `revert`, etc.
+
+Less specific cases:
+
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation only changes
+- `style`: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `perf`: A code change that improves performance
+- `test`: Adding missing tests
+- `chore`: Changes to the build process or auxiliary tools and libraries such as documentation generation
 
 References:
 
