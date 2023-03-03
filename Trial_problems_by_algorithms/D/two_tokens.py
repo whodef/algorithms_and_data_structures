@@ -38,11 +38,14 @@ from typing import List, Tuple, Optional
 
 def two_sum(arr: List[int], target_sum: int) -> Optional[Tuple[int, int]]:
     seen = set()
+
     for num in arr:
         complement = target_sum - num
+
         if complement in seen:
             return (complement, num)
         seen.add(num)
+
     return None
 
 
