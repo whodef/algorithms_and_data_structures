@@ -88,33 +88,3 @@ print_result(two_sum(arr, target_sum))
 # Примечание: в данном решении мы использовали встроенную функцию map для преобразования списка значений в строку.
 # Функция map применяет функцию str к каждому элементу списка и возвращает новый список со строковыми представлениями
 # элементов. Затем мы использовали метод join для объединения строк в одну строку, разделенную пробелами.
-
-
-# from typing import List, Tuple, Optional
-#
-# def two_sum(arr: List[int], target_sum: int) -> Optional[Tuple[int, int]]:
-#     left, right = 0, len(arr) - 1 # начальные значения указателей
-#     while left < right:
-#         current_sum = arr[left] + arr[right] # текущая сумма двух значений
-#         if current_sum == target_sum:
-#             return arr[left], arr[right] # возвращаем два значения, сумма которых равна k
-#         elif current_sum < target_sum:
-#             left += 1 # увеличиваем левый указатель, чтобы получить большее значение
-#         else:
-#             right -= 1 # уменьшаем правый указатель, чтобы получить меньшее значение
-#     return None # если не найдено двух значений, сумма которых равна k, возвращаем None
-#
-# def read_input() -> Tuple[List[int], int]:
-#     n = int(input())
-#     arr = list(map(int, input().strip().split()))
-#     target_sum = int(input())
-#     return arr, target_sum
-#
-# def print_result(result: Optional[Tuple[int, int]]) -> None:
-#     if result is None:
-#         print("None")
-#     else:
-#         print(" ".join(map(str, result)))
-#
-# arr, target_sum = read_input()
-# print_result(two_sum(arr, target_sum))
