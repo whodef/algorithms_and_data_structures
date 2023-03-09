@@ -27,7 +27,10 @@ B. Ловкость рук
 Выведите единственное число -— максимальное количество баллов, которое смогут набрать Гоша и Тимофей.
 """
 
+# Решение 2
+
 from typing import List, Tuple
+from collections import Counter
 
 
 def read_input() -> Tuple[int, List[str]]:
@@ -37,11 +40,34 @@ def read_input() -> Tuple[int, List[str]]:
 
 
 def find_num_points(keys_push: int, field_keys: List[str]) -> int:
-    keys = set(k for k in field_keys if not k == '.')
-    num_points = sum(field_keys.count(k) <= keys_push for k in keys)
+    counter = Counter(field_keys)
+    keys = set(k for k in counter.keys() if k.isnumeric())
+    num_points = sum(counter[k] <= keys_push for k in keys)
     return num_points
 
 
 if __name__ == '__main__':
     keys_push, field_keys = read_input()
     print(find_num_points(keys_push, field_keys), sep='')
+
+
+# Решение 1, после ревью необходимо было переписать
+#
+# from typing import List, Tuple
+#
+#
+# def read_input() -> Tuple[int, List[str]]:
+#     keys_push = int(input()) * 2
+#     field_keys = [c for _ in range(4) for c in input().strip()]
+#     return keys_push, field_keys
+#
+#
+# def find_num_points(keys_push: int, field_keys: List[str]) -> int:
+#     keys = set(k for k in field_keys if not k == '.')
+#     num_points = sum(field_keys.count(k) <= keys_push for k in keys)
+#     return num_points
+#
+#
+# if __name__ == '__main__':
+#     keys_push, field_keys = read_input()
+#     print(find_num_points(keys_push, field_keys), sep='')
