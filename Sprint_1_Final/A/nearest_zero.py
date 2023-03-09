@@ -32,30 +32,71 @@ ________________________________________________________________________________
 Для каждого из участков выведите расстояние до ближайшего нуля. Числа выводите в одну строку, разделяя их пробелами.
 """
 
-# Решение 2
-street_length = int(input())
-building_numbers = list(map(int, input().split()))
+# Решение 3
+from typing import List, Tuple
 
-left_distance = [float('inf')] * street_length
-cur = -float('inf')
 
-for i in range(street_length):
-    if building_numbers[i] == 0:
-        cur = i
-    left_distance[i] = i - cur
+def read_input() -> Tuple[int, List[int]]:
+    street_length = int(input())
+    building_numbers = list(map(int, input().strip().split()))
+    return street_length, building_numbers
 
-right_distance = [float('inf')] * street_length
-cur = float('inf')
 
-for i in range(street_length - 1, -1, -1):
-    if building_numbers[i] == 0:
-        cur = i
-    right_distance[i] = cur - i
+def calculate_distances(street_length: int, building_numbers: List[int]) -> List[int]:
+    left_distance = [float('inf')] * street_length
+    cur = -float('inf')
 
-distances = [
-    min(left_distance[i], right_distance[i]) for i in range(street_length)
-]
-print(*distances)
+    for i in range(street_length):
+        if building_numbers[i] == 0:
+            cur = i
+        left_distance[i] = i - cur
+
+    right_distance = [float('inf')] * street_length
+    cur = float('inf')
+
+    for i in reversed(range(street_length)):
+        if building_numbers[i] == 0:
+            cur = i
+        right_distance[i] = cur - i
+
+    distances = [
+        min(left_distance[i], right_distance[i]) for i in range(street_length)
+    ]
+    return distances
+
+
+if __name__ == '__main__':
+    street_length = int(input())
+    building_numbers = list(map(int, input().split()))
+    distances = calculate_distances(street_length, building_numbers)
+    print(*distances)
+
+
+# Решение 2, переписать после ревью
+#
+# street_length = int(input())
+# building_numbers = list(map(int, input().split()))
+#
+# left_distance = [float('inf')] * street_length
+# cur = -float('inf')
+#
+# for i in range(street_length):
+#     if building_numbers[i] == 0:
+#         cur = i
+#     left_distance[i] = i - cur
+#
+# right_distance = [float('inf')] * street_length
+# cur = float('inf')
+#
+# for i in range(street_length - 1, -1, -1):
+#     if building_numbers[i] == 0:
+#         cur = i
+#     right_distance[i] = cur - i
+#
+# distances = [
+#     min(left_distance[i], right_distance[i]) for i in range(street_length)
+# ]
+# print(*distances)
 
 
 # Решение 1, используя наивный алгоритм
