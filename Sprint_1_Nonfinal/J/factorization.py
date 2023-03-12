@@ -32,9 +32,23 @@ from typing import List
 
 
 def factorize(number: int) -> List[int]:
-    # Здесь реализация вашего решения
-    pass
+    primes = []
+    divisor = 2
+
+    while divisor <= number:
+        if number % divisor == 0:
+            primes.append(divisor)
+            number //= divisor
+        else:
+            divisor += 1
+
+    return primes
 
 
 result = factorize(int(input()))
 print(' '.join(map(str, result)))
+
+
+# Для решения задачи мы можем использовать алгоритм перебора делителей. Для этого будем перебирать все числа от 2
+# до √n, и для каждого числа проверять, является ли оно делителем числа n. Если число делит n без остатка, добавляем
+# его в список простых множителей и делим n на это число. Таким образом мы получаем все простые множители числа n.
