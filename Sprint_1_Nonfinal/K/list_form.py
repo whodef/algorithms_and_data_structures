@@ -29,9 +29,25 @@ ____________________________________________________________
 from typing import List, Tuple
 
 
+# Время работы этого алгоритма O(N), где N —— количество цифр в числе X.
 def get_sum(number_list: List[int], k: int) -> List[int]:
-    # Здесь реализация вашего решения
-    pass
+    carry = 0                                      # переменная, отвечающая за переполнение
+    for i in range(len(number_list)-1, -1, -1):
+        current_sum = number_list[i] + k % 10 + carry
+        carry = current_sum // 10                  # обновляем переменную переполнения
+        number_list[i] = current_sum % 10          # обновляем цифру в X
+        k //= 10                                   # отбрасываем младшую цифру K
+
+    while k > 0:                                   # если K еще не закончилось, добавляем его цифры
+        current_sum = k % 10 + carry
+        carry = current_sum // 10
+        number_list.insert(0, current_sum % 10)
+        k //= 10
+
+    if carry:                                      # если в конце осталось переполнение, добавляем еще одну цифру
+        number_list.insert(0, carry)
+
+    return number_list
 
 
 def read_input() -> Tuple[List[int], int]:
