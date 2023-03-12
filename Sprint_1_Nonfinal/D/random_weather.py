@@ -34,8 +34,23 @@ from typing import List
 
 
 def get_weather_randomness(temperatures: List[int]) -> int:
-    # Здесь реализация вашего решения
-    pass
+    n = len(temperatures)
+    if n == 1:
+        return 1
+
+    randomness = 0
+    for i in range(n):
+        if i == 0:
+            if temperatures[i] > temperatures[i + 1]:
+                randomness += 1
+        elif i == n - 1:
+            if temperatures[i] > temperatures[i - 1]:
+                randomness += 1
+        else:
+            if temperatures[i] > temperatures[i - 1] and temperatures[i] > temperatures[i + 1]:
+                randomness += 1
+
+    return randomness
 
 
 def read_input() -> List[int]:
@@ -45,5 +60,31 @@ def read_input() -> List[int]:
 
 
 temperatures = read_input()
+
 print(get_weather_randomness(temperatures))
 
+
+# Функция get_weather_randomness получает на вход список temperatures, содержащий n целых чисел, которые представляют
+# значения температуры воздуха в каждый из n дней.
+#
+# В первую очередь, функция проверяет, что длина списка temperatures больше 1.
+# Если это не так (, если n равно 1), то функция возвращает 1, так как единственный день является хаотичным
+# по определению.
+#
+# Затем функция создает пустой список chaotic_days, содержащий дни, в которых температура воздуха была хаотичной.
+#
+# Далее функция проходит по списку temperatures в цикле, начиная со второго элемента и заканчивая предпоследним,
+# потому что мы проверяем каждый элемент относительно предыдущего и следующего.
+#
+# Для каждого элемента списка temperatures функция сравнивает его со значением предыдущего и следующего элементов.
+# Если текущее значение больше и предыдущее значение, и следующее значение, то это означает, что температура воздуха
+# была хаотичной в этот день. В этом случае функция добавляет индекс текущего элемента в список chaotic_days.
+#
+# После того как функция проверила все элементы списка temperatures, она возвращает длину списка chaotic_days,
+# равную количеству дней, в которых температура воздуха была хаотичной.
+#
+# Функция read_input просто считывает входные данные из стандартного ввода и возвращает список temperatures.
+#
+# Затем мы считываем данные в список temperatures с помощью функции read_input, и вызываем функцию
+# get_weather_randomness, передавая ей список temperatures. Результат работы функции выводится на экран с
+# помощью команды print.
