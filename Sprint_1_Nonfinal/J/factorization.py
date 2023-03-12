@@ -28,25 +28,53 @@ ________________________________________________________________________________
 Выведите в порядке неубывания простые множители, на которые раскладывается число n.
 """
 
+# Код работает за O(sqrt(n)) время и обрабатывает большие числа быстрее, чем предыдущая версия.
 from typing import List
+import math
 
 
 def factorize(number: int) -> List[int]:
     primes = []
     divisor = 2
 
-    while divisor <= number:
+    # Ищем простые множители до sqrt(n)
+    while divisor <= math.sqrt(number):
         if number % divisor == 0:
             primes.append(divisor)
             number //= divisor
         else:
             divisor += 1
 
+    # Если число осталось больше 1, то оно тоже является простым множителем
+    if number > 1:
+        primes.append(number)
+
     return primes
 
 
 result = factorize(int(input()))
-print(' '.join(map(str, result)))
+print(' '.join(str(x) for x in result))
+
+
+# from typing import List
+#
+#
+# def factorize(number: int) -> List[int]:
+#     primes = []
+#     divisor = 2
+#
+#     while divisor <= number:
+#         if number % divisor == 0:
+#             primes.append(divisor)
+#             number //= divisor
+#         else:
+#             divisor += 1
+#
+#     return primes
+#
+#
+# result = factorize(int(input()))
+# print(' '.join(map(str, result)))
 
 
 # Для решения задачи мы можем использовать алгоритм перебора делителей. Для этого будем перебирать все числа от 2
