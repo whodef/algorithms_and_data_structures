@@ -1,12 +1,12 @@
 """
 B. Список дел
 
--------------------------------------------------------------
+_____________________________________________________________
 |  Ограничение времени  |  1 секунда                        |
 |  Ограничение памяти   |  64Mb                             |
 |  Ввод                 |  стандартный ввод или input.txt   |
 |  Вывод                |  стандартный вывод или output.txt |
--------------------------------------------------------------
+_____________________________________________________________
 
 Васе нужно распечатать свой список дел на сегодня. Помогите ему: напишите функцию, которая печатает все его дела.
 Известно, что дел у Васи не больше 5000.
@@ -32,6 +32,7 @@ B. Список дел
 Функция должна напечатать элементы списка по одному в строке.
 """
 
+
 # ! change LOCAL to False before submitting !
 # set LOCAL to True for local testing
 
@@ -45,14 +46,16 @@ if LOCAL:
 
 
 def solution(node):
-    pass
+    while node is not None:
+        print(node.value)
+        node = node.next_item
 
 
 def test():
-    node3 = Node("node3", None)
-    node2 = Node("node2", node3)
-    node1 = Node("node1", node2)
-    node0 = Node("node0", node1)
+    node3 = Node('node3', None)
+    node2 = Node('node2', node3)
+    node1 = Node('node1', node2)
+    node0 = Node('node0', node1)
     solution(node0)
     # Output is:
     # node0
