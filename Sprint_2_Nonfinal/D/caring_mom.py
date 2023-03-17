@@ -1,12 +1,12 @@
 """
 D. Заботливая мама
 
--------------------------------------------------------------
+_____________________________________________________________
 |  Ограничение времени  |  1 секунда                        |
 |  Ограничение памяти   |  64Mb                             |
 |  Ввод                 |  стандартный ввод или input.txt   |
 |  Вывод                |  стандартный вывод или output.txt |
--------------------------------------------------------------
+_____________________________________________________________
 
 Мама Васи хочет знать, что сын планирует делать и когда. Помогите ей: напишите функцию solution, определяющую индекс
 первого вхождения передаваемого ей на вход значения в связном списке, если значение присутствует.
@@ -36,7 +36,7 @@ D. Заботливая мама
 # ! change LOCAL to False before submitting !
 # set LOCAL to True for local testing
 
-LOCAL = True
+LOCAL = False
 
 if LOCAL:
     class Node:
@@ -48,15 +48,21 @@ if LOCAL:
 def solution(node, elem):
     # Your code
     # ヽ(´▽`)/
-    pass
+    index = 0
+    while node is not None:
+        if node.value == elem:
+            return index
+        node = node.next_item
+        index += 1
+    return -1
 
 
 def test():
-    node3 = Node("node3", None)
-    node2 = Node("node2", node3)
-    node1 = Node("node1", node2)
-    node0 = Node("node0", node1)
-    idx = solution(node0, "node2")
+    node3 = Node('node3', None)
+    node2 = Node('node2', node3)
+    node1 = Node('node1', node2)
+    node0 = Node('node0', node1)
+    idx = solution(node0, 'node2')
     assert idx == 2
 
 
