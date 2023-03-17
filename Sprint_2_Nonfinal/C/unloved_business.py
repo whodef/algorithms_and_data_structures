@@ -1,12 +1,12 @@
 """
 C. Нелюбимое дело
 
--------------------------------------------------------------
+_____________________________________________________________
 |  Ограничение времени  |  1 секунда                        |
 |  Ограничение памяти   |  64Mb                             |
 |  Ввод                 |  стандартный ввод или input.txt   |
 |  Вывод                |  стандартный вывод или output.txt |
--------------------------------------------------------------
+_____________________________________________________________
 
 Вася размышляет, что ему можно не делать из того списка дел, который он составил. Но, кажется, все пункты очень важные!
 Вася решает загадать число и удалить дело, которое идёт под этим номером. Список дел представлен в виде односвязного
@@ -30,10 +30,11 @@ C. Нелюбимое дело
 Верните голову списка, в котором удален нужный элемент.
 """
 
+
 # ! change LOCAL to False before submitting !
 # set LOCAL to True for local testing
 
-LOCAL = True
+LOCAL = False
 
 if LOCAL:
     class Node:
@@ -45,14 +46,27 @@ if LOCAL:
 def solution(node, idx):
     # Your code
     # ヽ(´▽`)/
-    pass
+    if idx == 0:
+        return node.next_item
+    index = 0
+    head = node
+
+    while True:
+        if index == idx - 1:
+            node.next_item = node.next_item.next_item
+            break
+
+        node = node.next_item
+        index += 1
+
+    return head
 
 
 def test():
-    node3 = Node("node3", None)
-    node2 = Node("node2", node3)
-    node1 = Node("node1", node2)
-    node0 = Node("node0", node1)
+    node3 = Node('node3', None)
+    node2 = Node('node2', node3)
+    node1 = Node('node1', node2)
+    node0 = Node('node0', node1)
     new_head = solution(node0, 1)
     assert new_head is node0
     assert new_head.next_item is node2
