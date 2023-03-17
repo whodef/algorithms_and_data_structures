@@ -1,12 +1,12 @@
 """
 E. Всё наоборот
 
--------------------------------------------------------------
+_____________________________________________________________
 |  Ограничение времени  |  1 секунда                        |
 |  Ограничение памяти   |  64Mb                             |
 |  Ввод                 |  стандартный ввод или input.txt   |
 |  Вывод                |  стандартный вывод или output.txt |
--------------------------------------------------------------
+_____________________________________________________________
 
 Вася решил запутать маму —– делать дела в обратном порядке. Список его дел теперь хранится в двусвязном списке.
 Напишите функцию, которая вернёт список в обратном порядке.
@@ -36,7 +36,7 @@ E. Всё наоборот
 # ! change LOCAL to False before submitting !
 # set LOCAL to True for local testing
 
-LOCAL = True
+LOCAL = False
 
 if LOCAL:
     class DoubleConnectedNode:
@@ -49,14 +49,20 @@ if LOCAL:
 def solution(node):
     # Your code
     # ヽ(´▽`)/
-    pass
+    while node is not None:
+        next_node = node.next
+        node.next = node.prev
+        node.prev = next_node
+        if next_node is None:
+            return node
+        node = next_node
 
 
 def test():
-    node3 = DoubleConnectedNode("node3")
-    node2 = DoubleConnectedNode("node2")
-    node1 = DoubleConnectedNode("node1")
-    node0 = DoubleConnectedNode("node0")
+    node3 = DoubleConnectedNode('node3')
+    node2 = DoubleConnectedNode('node2')
+    node1 = DoubleConnectedNode('node1')
+    node0 = DoubleConnectedNode('node0')
 
     node0.next = node1
 
