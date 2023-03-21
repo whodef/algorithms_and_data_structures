@@ -35,6 +35,9 @@ Value — целое число, по модулю не превосходяще
 """
 
 
+# Решение
+# ID успешной посылки: 84325550
+# Address: https://contest.yandex.ru/contest/23390/run-report/84325550/
 class Deque:
     def __init__(self, max_size):
         self.max_size = max_size
@@ -74,22 +77,28 @@ class Deque:
         return value
 
 
-n = int(input())
-m = int(input())
+def solution(deque_max_size, commands):
+    results = []
+    deque = Deque(deque_max_size)
 
-deque = Deque(m)
+    for command, *args in commands:
+        try:
+            command_result = getattr(deque, command)(*args)
+            if command_result:
+                results.append(command_result)
+        except LookupError:
+            results.append('error')
 
-for i in range(n):
-    command = input().split()
-    if command[0] == 'push_back':
-        deque.push_back(int(command[1]))
-    elif command[0] == 'push_front':
-        deque.push_front(int(command[1]))
-    elif command[0] == 'pop_front':
-        value = deque.pop_front()
-        if value is not None:
-            print(value)
-    elif command[0] == 'pop_back':
-        value = deque.pop_back()
-        if value is not None:
-            print(value)
+    return results
+
+
+def read_input():
+    command_amount = int(input())
+    max_size = int(input())
+    commands = [input().split(' ') for _ in range(command_amount)]
+    return max_size, commands
+
+
+if __name__ == '__main__':
+    deque_max_size, commands = read_input()
+    print('\n'.join(solution(deque_max_size, commands)))
