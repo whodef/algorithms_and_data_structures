@@ -68,3 +68,44 @@ ____________________________________________________________
 Выведите единственное число — значение выражения.
 """
 
+
+# Решение
+# ID успешной посылки: 84436695
+# Address: https://contest.yandex.ru/contest/23390/run-report/84436695/
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, element):
+        self.stack.append(element)
+
+    def pop(self):
+        try:
+            return self.stack.pop()
+        except IndexError:
+            raise IndexError('Стек пустой')
+
+
+def solution(postfix_notation, stack):
+    operators = {
+        '+': lambda a, b: b + a,
+        '-': lambda a, b: b - a,
+        '*': lambda a, b: b * a,
+        '/': lambda a, b: b // a,
+    }
+
+    for item in postfix_notation:
+        if item in operators.keys():
+            a, b = int(stack.pop()), int(stack.pop())
+            stack.push(operators[item](a, b))
+        else:
+            stack.push(item)
+
+    return stack.pop()
+
+
+if __name__ == '__main__':
+    postfix_notation = input().split(' ')
+    stack = Stack()
+
+    print(solution(postfix_notation, stack))
