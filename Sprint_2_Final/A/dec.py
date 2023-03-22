@@ -36,8 +36,8 @@ Value — целое число, по модулю не превосходяще
 
 
 # Решение
-# ID успешной посылки: 84325550
-# Address: https://contest.yandex.ru/contest/23390/run-report/84325550/
+# ID успешной посылки: 84437920
+# Address: https://contest.yandex.ru/contest/23390/run-report/84437920/
 from typing import List, Tuple, Union
 
 
