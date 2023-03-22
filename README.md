@@ -1,6 +1,8 @@
 # Algorithms and data structures
 ## 'Python Developer Plus' Course. Sprint 15, 16, 17
 
+The tasks of these sprints are completed in [Yandex.Contest](https://contest.yandex.ru/). 
+
 ___
 ## Useful links
 ### [Playground](https://www.sololearn.com/compiler-playground/cEpZKIpYYm0o/) for unlimited mistakes :D
