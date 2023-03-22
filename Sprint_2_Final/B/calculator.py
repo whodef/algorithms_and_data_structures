@@ -70,23 +70,12 @@ ____________________________________________________________
 
 
 # Решение
-# ID успешной посылки: 84437284
-# Address: https://contest.yandex.ru/contest/23390/run-report/84437284/
-class Stack:
-    def __init__(self):
-        self.stack = []
-
-    def push(self, element):
-        self.stack.append(element)
-
-    def pop(self):
-        try:
-            return self.stack.pop()
-        except IndexError:
-            raise IndexError('Стек пустой')
+# ID успешной посылки: 84437644
+# Address: https://contest.yandex.ru/contest/23390/run-report/84437644/
+from typing import List, Tuple
 
 
-def solution(postfix_notation, stack):
+def solution(postfix_notation: List[str], stack: List[int]) -> int:
     operators = {
         '+': lambda a, b: b + a,
         '-': lambda a, b: b - a,
@@ -97,19 +86,19 @@ def solution(postfix_notation, stack):
     for item in postfix_notation:
         if item in operators.keys():
             a, b = int(stack.pop()), int(stack.pop())
-            stack.push(operators[item](a, b))
+            stack.append(operators[item](a, b))
         else:
-            stack.push(item)
+            stack.append(int(item))
 
     return stack.pop()
 
 
-def read_input():
+def read_input() -> Tuple[List[str], List[int]]:
     postfix_notation = input().split(' ')
-    stack = Stack()
+    stack = []
     return postfix_notation, stack
 
 
 if __name__ == '__main__':
     postfix_notation, stack = read_input()
-    print((solution(postfix_notation, stack)))
+    print(solution(postfix_notation, stack))
