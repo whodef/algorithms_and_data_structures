@@ -38,61 +38,58 @@ Value — целое число, по модулю не превосходяще
 # Решение
 # ID успешной посылки: 84325550
 # Address: https://contest.yandex.ru/contest/23390/run-report/84325550/
-class Deque:
-    def __init__(self, max_size):
-        self.max_size = max_size
-        self.buffer = [None] * max_size
-        self.front = 0
-        self.back = 0
-        self.size = 0
-
-    def push_front(self, value):
-        if self.size == self.max_size:
-            raise LookupError('error')
-        self.front = (self.front - 1) % self.max_size
-        self.buffer[self.front] = value
-        self.size += 1
-
-    def push_back(self, value):
-        if self.size == self.max_size:
-            raise LookupError('error')
-        self.buffer[self.back] = value
-        self.back = (self.back + 1) % self.max_size
-        self.size += 1
-
-    def pop_front(self):
-        if self.size == 0:
-            raise LookupError('error')
-        value = self.buffer[self.front]
-        self.front = (self.front + 1) % self.max_size
-        self.size -= 1
-        return value
-
-    def pop_back(self):
-        if self.size == 0:
-            raise LookupError('error')
-        self.back = (self.back - 1) % self.max_size
-        value = self.buffer[self.back]
-        self.size -= 1
-        return value
+from typing import List, Tuple, Union
 
 
-def solution(deque_max_size, commands):
+def solution(deque_max_size: int, commands: List[List[str]]) -> List[Union[str, int]]:
     results = []
-    deque = Deque(deque_max_size)
+    front, back = [], []
+
+    def push_front(value: int):
+        if len(front) + len(back) == deque_max_size:
+            raise LookupError('error')
+        front.append(value)
+
+    def push_back(value: int):
+        if len(front) + len(back) == deque_max_size:
+            raise LookupError('error')
+        back.append(value)
+
+    def pop_front() -> int:
+        if not front and not back:
+            raise LookupError('error')
+        if not front:
+            front.extend(reversed(back))
+            back.clear()
+        return front.pop()
+
+    def pop_back() -> int:
+        if not front and not back:
+            raise LookupError('error')
+        if not back:
+            back.extend(reversed(front))
+            front.clear()
+        return back.pop()
 
     for command, *args in commands:
         try:
-            command_result = getattr(deque, command)(*args)
-            if command_result:
-                results.append(command_result)
+            if command == 'push_front':
+                push_front(int(args[0]))
+            elif command == 'push_back':
+                push_back(int(args[0]))
+            elif command == 'pop_front':
+                results.append(pop_front())
+            elif command == 'pop_back':
+                results.append(pop_back())
+            else:
+                raise ValueError(f'Unknown command "{command}"')
         except LookupError:
             results.append('error')
 
     return results
 
 
-def read_input():
+def read_input() -> Tuple[int, List[List[str]]]:
     command_amount = int(input())
     max_size = int(input())
     commands = [input().split(' ') for _ in range(command_amount)]
@@ -101,4 +98,4 @@ def read_input():
 
 if __name__ == '__main__':
     deque_max_size, commands = read_input()
-    print('\n'.join(solution(deque_max_size, commands)))
+    print('\n'.join(map(str, solution(deque_max_size, commands))))
