@@ -70,8 +70,8 @@ ____________________________________________________________
 
 
 # Решение
-# ID успешной посылки: 84436695
-# Address: https://contest.yandex.ru/contest/23390/run-report/84436695/
+# ID успешной посылки: 84437284
+# Address: https://contest.yandex.ru/contest/23390/run-report/84437284/
 class Stack:
     def __init__(self):
         self.stack = []
@@ -104,8 +104,12 @@ def solution(postfix_notation, stack):
     return stack.pop()
 
 
-if __name__ == '__main__':
+def read_input():
     postfix_notation = input().split(' ')
     stack = Stack()
+    return postfix_notation, stack
 
-    print(solution(postfix_notation, stack))
+
+if __name__ == '__main__':
+    postfix_notation, stack = read_input()
+    print((solution(postfix_notation, stack)))
