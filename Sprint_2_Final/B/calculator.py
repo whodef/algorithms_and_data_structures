@@ -69,13 +69,23 @@ ____________________________________________________________
 """
 
 
-# Решение
-# ID успешной посылки: 84437644
-# Address: https://contest.yandex.ru/contest/23390/run-report/84437644/
-from typing import List, Tuple
+# Решение 2
+# ID успешной посылки: 84524250
+# Address: https://contest.yandex.ru/contest/23390/run-report/84524250/
+class Stack:
+    def __init__(self):
+        self.__elements = []
+
+    def push(self, element):
+        self.__elements.append(element)
+
+    def pop(self):
+        if not self.__elements:
+            raise IndexError('Стек пустой')
+        return self.__elements.pop()
 
 
-def solution(postfix_notation: List[str], stack: List[int]) -> int:
+def solution(postfix_notation, stack):
     operators = {
         '+': lambda a, b: b + a,
         '-': lambda a, b: b - a,
@@ -86,19 +96,53 @@ def solution(postfix_notation: List[str], stack: List[int]) -> int:
     for item in postfix_notation:
         if item in operators.keys():
             a, b = int(stack.pop()), int(stack.pop())
-            stack.append(operators[item](a, b))
+            stack.push(operators[item](a, b))
         else:
-            stack.append(int(item))
+            stack.push(item)
 
     return stack.pop()
 
 
-def read_input() -> Tuple[List[str], List[int]]:
+def read_input():
     postfix_notation = input().split()
-    stack = []
+    stack = Stack()
     return postfix_notation, stack
 
 
 if __name__ == '__main__':
     postfix_notation, stack = read_input()
-    print(solution(postfix_notation, stack))
+    print((solution(postfix_notation, stack)))
+
+
+# Решение 1
+#
+# from typing import List, Tuple
+#
+#
+# def solution(postfix_notation: List[str], stack: List[int]) -> int:
+#     operators = {
+#         '+': lambda a, b: b + a,
+#         '-': lambda a, b: b - a,
+#         '*': lambda a, b: b * a,
+#         '/': lambda a, b: b // a,
+#     }
+#
+#     for item in postfix_notation:
+#         if item in operators.keys():
+#             a, b = int(stack.pop()), int(stack.pop())
+#             stack.append(operators[item](a, b))
+#         else:
+#             stack.append(int(item))
+#
+#     return stack.pop()
+#
+#
+# def read_input() -> Tuple[List[str], List[int]]:
+#     postfix_notation = input().split()
+#     stack = []
+#     return postfix_notation, stack
+#
+#
+# if __name__ == '__main__':
+#     postfix_notation, stack = read_input()
+#     print(solution(postfix_notation, stack))
