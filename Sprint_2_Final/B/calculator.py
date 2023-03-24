@@ -70,8 +70,7 @@ ____________________________________________________________
 
 
 # Решение 2
-# ID успешной посылки: 84524250
-# Address: https://contest.yandex.ru/contest/23390/run-report/84524250/
+
 class Stack:
     def __init__(self):
         self.__elements = []

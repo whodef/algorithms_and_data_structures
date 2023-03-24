@@ -36,8 +36,7 @@ Value — целое число, по модулю не превосходяще
 
 
 # Решение 2
-# ID успешной посылки: 84524869
-# Address: https://contest.yandex.ru/contest/23390/run-report/84524869/
+
 class Deque:
     def __init__(self, max_size):
         self.__max_size = max_size
