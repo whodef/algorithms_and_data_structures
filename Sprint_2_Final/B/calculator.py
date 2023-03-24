@@ -94,7 +94,7 @@ def solution(postfix_notation: List[str], stack: List[int]) -> int:
 
 
 def read_input() -> Tuple[List[str], List[int]]:
-    postfix_notation = input().split(' ')
+    postfix_notation = input().split()
     stack = []
     return postfix_notation, stack
 
