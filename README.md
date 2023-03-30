@@ -5,7 +5,9 @@ The tasks of these sprints are completed in [Yandex.Contest](https://contest.yan
 
 ___
 ## Useful links
-### [Playground](https://www.sololearn.com/compiler-playground/cEpZKIpYYm0o/) for unlimited mistakes :D
+
+1. [NeetCode](https://neetcode.io/practice)
+2. [Playground](https://www.sololearn.com/compiler-playground/cEpZKIpYYm0o/) for unlimited mistakes :D
 
 ___
 
