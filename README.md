@@ -6,8 +6,10 @@ The tasks of these sprints are completed in [Yandex.Contest](https://contest.yan
 ___
 ## Useful links
 
+
 1. [NeetCode](https://neetcode.io/practice)
-2. [Playground](https://www.sololearn.com/compiler-playground/cEpZKIpYYm0o/) for unlimited mistakes :D
+2. [e-maxx.ru](https://e-maxx.ru/algo/)
+3. [Playground](https://www.sololearn.com/compiler-playground/cEpZKIpYYm0o/) for unlimited mistakes :D
 
 ___
 
