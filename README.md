@@ -14,9 +14,13 @@ ___
 ___
 
 ## What is an Algorithm
+
 The word [Algorithm means](https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=lbp) ”A  set of rules to be followed in calculations or other problem-solving operations” Or ”A procedure for solving a mathematical problem in a finite number of steps that frequently by recursive operations“. 
 
-Types of Algorithms:
+<details>
+<summary>Types of Algorithms</summary>
+<br>
+
 There are several types of algorithms available. Some important algorithms are:
 
 1. Brute Force Algorithm: It is the simplest approach for a problem. A brute force algorithm is the first approach that comes to finding when we see a problem.
@@ -52,14 +56,17 @@ There are several types of algorithms available. Some important algorithms are:
 
 10. Randomized Algorithm: In the randomized algorithm we use a random number so it gives immediate benefit. The random number helps in deciding the expected outcome.
 
+</details>
 
 ## What is Data Structure
 
 >A data structure is a storage that is used to store and organize data. It is a way of arranging data on a computer so that it can be accessed and updated efficiently.
 
-A data structure is not only used for organizing the data. It is also used for processing, retrieving, and storing data. There are different basic and advanced types of data structures that are used in almost every program or software system that has been developed. So we must have good knowledge about data structures. 
+A data structure is not only used for organizing the data. It is also used for processing, retrieving, and storing data. There are different basic and advanced types of data structures that are used in almost every program or software system that has been developed. So we must have good knowledge about data structures.
 
-### Classification of Data Structure:
+<details>
+<summary>Classification of Data Structure</summary>
+<br>
 
 ![ClassificationofDataStructure-660x347](https://user-images.githubusercontent.com/7266512/221867187-ffc2297f-bb90-41f4-930d-3f28040bc4ed.jpg)
 
@@ -79,6 +86,8 @@ For example, we can store a list of items having the same data-type using the ar
 ![array-2](https://user-images.githubusercontent.com/7266512/221869287-0693c64e-8c52-4568-8c29-d9bf006f40f8.png)
 
 [More...](https://www.geeksforgeeks.org/data-structures/)
+
+</details>
 
 ___
 
@@ -100,8 +109,9 @@ feat: add hat wobble
 +-------> Type: chore, docs, feat, fix, refactor, style, or test.
 ```
 
-
-More Examples:
+<details>
+<summary>More Examples</summary>
+<br>
 
 - `feat`: new feature for the user, not a new feature for build script
 - `fix`: bug fix for the user, not a fix to a build script
@@ -113,7 +123,7 @@ More Examples:
 - `perf`: a commit that improves performance, without functional changes
 - or `build`, `ci`, `revert`, etc.
 
-Less specific cases:
+Another cases:
 
 - `feat`: A new feature
 - `fix`: A bug fix
@@ -129,4 +139,6 @@ References:
 1. https://www.conventionalcommits.org/
 2. https://seesparkbox.com/foundry/semantic_commit_messages
 3. http://karma-runner.github.io/1.0/dev/git-commit-msg.html
-___
+
+</details>
+
