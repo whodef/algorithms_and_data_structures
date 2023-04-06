@@ -79,7 +79,7 @@ def solution(commands):
 
 def read_input():
     command_amount = int(input())
-    commands = [input().split(' ') for _ in range(command_amount)]
+    commands = [input().split() for _ in range(command_amount)]
     return commands
 
 
