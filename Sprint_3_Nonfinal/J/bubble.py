@@ -58,5 +58,5 @@ def bubble_sort(number, array):
 
 if __name__ == '__main__':
     number = int(input())
-    array = [int(num) for num in input().split(' ')]
+    array = [int(num) for num in input().split()]
     bubble_sort(number, array)
