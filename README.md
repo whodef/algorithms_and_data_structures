@@ -9,7 +9,8 @@ ___
 
 1. [NeetCode](https://neetcode.io/practice)
 2. [e-maxx.ru](https://e-maxx.ru/algo/)
-3. [Playground](https://www.sololearn.com/compiler-playground/cEpZKIpYYm0o/) for unlimited mistakes :D
+3. [Templates on GitHub](https://github.com/Yandex-Practicum/algorithms-templates)
+4. [Playground](https://www.sololearn.com/compiler-playground/cEpZKIpYYm0o/) for unlimited mistakes :D
 
 ___
 
