@@ -40,8 +40,8 @@ ________________________________________________________________________________
 """
 
 
-n = int(input()) # читаем количество отрезков
-segments = [] # список для хранения отрезков
+n = int(input())  # читаем количество отрезков
+segments = []     # список для хранения отрезков
 
 for i in range(n):
     start, end = map(int, input().split())
@@ -50,18 +50,18 @@ for i in range(n):
 # сортируем отрезки по координате начала
 segments.sort()
 
-result = [] # список для хранения результирующих клумб
-cur_start, cur_end = segments[0] # начинаем с первого отрезка
+result = []                       # список для хранения результирующих клумб
+cur_start, cur_end = segments[0]  # начинаем с первого отрезка
 
 for i in range(1, n):
     start, end = segments[i]
-    if start <= cur_end: # если текущий отрезок пересекается с предыдущим
-        cur_end = max(cur_end, end) # объединяем их в один отрезок
+    if start <= cur_end:             # если текущий отрезок пересекается с предыдущим
+        cur_end = max(cur_end, end)  # объединяем их в один отрезок
     else:
-        result.append((cur_start, cur_end)) # добавляем текущий отрезок в результат
-        cur_start, cur_end = start, end # начинаем новую клумбу
+        result.append((cur_start, cur_end))  # добавляем текущий отрезок в результат
+        cur_start, cur_end = start, end      # начинаем новую клумбу
 
-result.append((cur_start, cur_end)) # добавляем последнюю клумбу в результат
+result.append((cur_start, cur_end))  # добавляем последнюю клумбу в результат
 
 # выводим результирующие клумбы, отсортированные по координате начала
 for start, end in result:
