@@ -28,64 +28,43 @@ ______________________________________________________________
 """
 
 
-# Решение 4
-from typing import Tuple
+# Решение 4. Правильное
 
-
-def swap(a: int, b: int) -> Tuple[int, int]:
-    return b, a
+def wardrobe(n, arr):
+    return arr.count('0') * '0' + arr.count('1') * '1' + arr.count('2') * '2'
 
 
 if __name__ == '__main__':
-    n = int(input())
-    items = [int(x) for x in input().split()]
-
-    left, right = 0, n - 1
-    while items[left] == 0:
-        left += 1
-    while items[right] == 2:
-        right -= 1
-
-    i = left
-    while i <= right:
-        if items[i] == 0:
-            items[i], items[left] = swap(items[i], items[left])
-            left += 1
-            i += 1
-        elif items[i] == 2:
-            items[i], items[right] = swap(items[i], items[right])
-            right -= 1
-        else:
-            i += 1
-
-    print(*items)
+    print(*wardrobe(input(), input().split()))
 
 
 # Решение 3
+# Предыдущие решения получали TL
+#
+# if __name__ == '__main__':
+#     n = int(input())
+#     items = list(map(int, input().split()))
+#
+#     left = 0  # левая граница для розового цвета
+#     right = n - 1  # правая граница для малинового цвета
+#     i = 0  # текущий индекс
+#
+#     while i <= right:
+#         if items[i] == 0:
+#             items[i], items[left] = items[left], items[i]
+#             left += 1
+#             i += 1
+#         elif items[i] == 2:
+#             items[i], items[right] = items[right], items[i]
+#             right -= 1
+#         else:
+#             i += 1
+#
+#     print(*items)
 
-if __name__ == '__main__':
-    n = int(input())
-    items = list(map(int, input().split()))
-
-    left = 0  # левая граница для розового цвета
-    right = n - 1  # правая граница для малинового цвета
-    i = 0  # текущий индекс
-
-    while i <= right:
-        if items[i] == 0:
-            items[i], items[left] = items[left], items[i]
-            left += 1
-            i += 1
-        elif items[i] == 2:
-            items[i], items[right] = items[right], items[i]
-            right -= 1
-        else:
-            i += 1
-
-    print(*items)
 
 # Решение 2
-
+#
 # def counting_sort(array, k=3):
 #     if len(array) == 0:
 #         print(*array)
