@@ -51,3 +51,57 @@ ______________________________________________________________
 
 Для отсечения неэффективных решений ваша функция будет запускаться от 100000 до 1000000 раз.
 """
+
+
+def broken_search(arr, k):
+    n = len(arr)
+    if n == 0:
+        return -1
+    if n == 1:
+        return 0 if arr[0] == k else -1
+
+    # Поиск индекса pivot
+    left, right = 0, n - 1
+    while left < right:
+        mid = (left + right) // 2
+        if arr[left] < arr[right]:
+            # Массив уже отсортирован
+            pivot = left
+            break
+        elif arr[mid] > arr[right]:
+            left = mid + 1
+        elif arr[mid] < arr[right]:
+            right = mid
+        else:
+            right -= 1
+
+    else:
+        # Если цикл завершился по условию, а не по break,
+        # значит все элементы массива равны
+        pivot = left
+
+    # Бинарный поиск в одной из двух отсортированных частей
+    left, right = 0, n - 1
+    if arr[pivot] <= k <= arr[right]:
+        left = pivot
+    else:
+        right = pivot - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == k:
+            return mid
+        elif arr[mid] < k:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return -1
+
+
+if __name__ == '__main__':
+    count_array = int(input())
+    k = int(input())
+    arr = [int(num) for num in input().split()]
+
+    print(broken_search(arr, k))
