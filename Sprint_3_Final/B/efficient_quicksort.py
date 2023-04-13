@@ -59,3 +59,46 @@ Fi и Pi — целые числа, лежащие в диапазоне от 0 
 Формат вывода:
 Для отсортированного списка участников выведите по порядку их логины по одному в строке.
 """
+
+
+def partition(rival, left, right):
+    pivot = rival[left]
+    m = left + 1
+    k = right - 1
+
+    while True:
+        while m <= k and rival[k] > pivot:
+            k -= 1
+        while m <= k and rival[m] < pivot:
+            m += 1
+        if m <= k:
+            rival[m], rival[k] = rival[k], rival[m]
+        else:
+            rival[left], rival[k] = rival[k], rival[left]
+            return k
+
+
+def quick_sort(rival):
+    left = 0
+    right = len(rival)
+    stack = [(left, right)]
+    while stack:
+        left, right = stack.pop()
+        if right - left > 1:
+            p = partition(rival, left, right)
+            stack.append((left, p))
+            stack.append((p + 1, right))
+
+
+def final_sort(rival):
+    rival[1] = -int(rival[1])
+    rival[2] = int(rival[2])
+    return [rival[1], rival[2], rival[0]]
+
+
+if __name__ == '__main__':
+    number = int(input())
+    arr = [final_sort(input().split()) for _ in range(number)]
+
+    quick_sort(arr)
+    print(*(rival[2] for rival in arr), sep='\n')
