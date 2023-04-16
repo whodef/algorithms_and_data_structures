@@ -94,12 +94,10 @@ def quick_sort(arr):
 def final_sort(elem):
     elem[1] = -int(elem[1])
     elem[2] = int(elem[2])
-    # -1*tasks_solved, penalty, login
     return [elem[1], elem[2], elem[0]]
 
 
 if __name__ == '__main__':
     number = int(input())
-    # loaded all into memory
     arr = quick_sort([final_sort(input().split()) for _ in range(number)])
     print(*(elem[2] for elem in arr), sep='\n')
