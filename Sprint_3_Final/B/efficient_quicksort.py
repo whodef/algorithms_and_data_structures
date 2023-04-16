@@ -61,44 +61,45 @@ Fi и Pi — целые числа, лежащие в диапазоне от 0 
 """
 
 
-def partition(rival, left, right):
-    pivot = rival[left]
-    m = left + 1
-    k = right - 1
+def partition(arr, left, right):
+    pivot = arr[left]
+    new_left = left + 1
+    new_right = right - 1
 
     while True:
-        while m <= k and rival[k] > pivot:
-            k -= 1
-        while m <= k and rival[m] < pivot:
-            m += 1
-        if m <= k:
-            rival[m], rival[k] = rival[k], rival[m]
+        while new_left <= new_right and arr[new_right] > pivot:
+            new_right -= 1
+        while new_left <= new_right and arr[new_left] < pivot:
+            new_left += 1
+        if new_left <= new_right:
+            arr[new_left], arr[new_right] = arr[new_right], arr[new_left]
         else:
-            rival[left], rival[k] = rival[k], rival[left]
-            return k
+            arr[left], arr[new_right] = arr[new_right], arr[left]
+            return new_right
 
 
-def quick_sort(rival):
+def quick_sort(arr):
     left = 0
-    right = len(rival)
+    right = len(arr)
     stack = [(left, right)]
     while stack:
         left, right = stack.pop()
         if right - left > 1:
-            p = partition(rival, left, right)
-            stack.append((left, p))
-            stack.append((p + 1, right))
+            pivot_index = partition(arr, left, right)
+            stack.append((left, pivot_index))
+            stack.append((pivot_index + 1, right))
+    return arr
 
 
-def final_sort(rival):
-    rival[1] = -int(rival[1])
-    rival[2] = int(rival[2])
-    return [rival[1], rival[2], rival[0]]
+def final_sort(elem):
+    elem[1] = -int(elem[1])
+    elem[2] = int(elem[2])
+    # -1*tasks_solved, penalty, login
+    return [elem[1], elem[2], elem[0]]
 
 
 if __name__ == '__main__':
     number = int(input())
-    arr = [final_sort(input().split()) for _ in range(number)]
-
-    quick_sort(arr)
-    print(*(rival[2] for rival in arr), sep='\n')
+    # loaded all into memory
+    arr = quick_sort([final_sort(input().split()) for _ in range(number)])
+    print(*(elem[2] for elem in arr), sep='\n')
