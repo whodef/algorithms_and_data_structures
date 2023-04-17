@@ -61,6 +61,8 @@ Fi и Pi — целые числа, лежащие в диапазоне от 0 
 """
 
 
+# Решение 2
+
 def partition(arr, left, right):
     pivot = arr[left]
     new_left = left + 1
@@ -92,12 +94,55 @@ def quick_sort(arr):
 
 
 def final_sort(elem):
-    elem[1] = -int(elem[1])
-    elem[2] = int(elem[2])
-    return [elem[1], elem[2], elem[0]]
+    name, score, penalty = elem
+    return (-int(score), int(penalty), name)
 
 
 if __name__ == '__main__':
     number = int(input())
-    arr = quick_sort([final_sort(input().split()) for _ in range(number)])
+    arr = quick_sort([final_sort(tuple(input().split())) for _ in range(number)])
     print(*(elem[2] for elem in arr), sep='\n')
+
+
+# Решение 1
+#
+# def partition(arr, left, right):
+#     pivot = arr[left]
+#     new_left = left + 1
+#     new_right = right - 1
+#
+#     while True:
+#         while new_left <= new_right and arr[new_right] > pivot:
+#             new_right -= 1
+#         while new_left <= new_right and arr[new_left] < pivot:
+#             new_left += 1
+#         if new_left <= new_right:
+#             arr[new_left], arr[new_right] = arr[new_right], arr[new_left]
+#         else:
+#             arr[left], arr[new_right] = arr[new_right], arr[left]
+#             return new_right
+#
+#
+# def quick_sort(arr):
+#     left = 0
+#     right = len(arr)
+#     stack = [(left, right)]
+#     while stack:
+#         left, right = stack.pop()
+#         if right - left > 1:
+#             pivot_index = partition(arr, left, right)
+#             stack.append((left, pivot_index))
+#             stack.append((pivot_index + 1, right))
+#     return arr
+#
+#
+# def final_sort(elem):
+#     elem[1] = -int(elem[1])
+#     elem[2] = int(elem[2])
+#     return [elem[1], elem[2], elem[0]]
+#
+#
+# if __name__ == '__main__':
+#     number = int(input())
+#     arr = quick_sort([final_sort(input().split()) for _ in range(number)])
+#     print(*(elem[2] for elem in arr), sep='\n')
