@@ -47,3 +47,41 @@ O(log(n+m)).
 Нужно вывести одной число — найденную медиану.
 """
 
+
+def find_median(n, m, north, south):
+    if n > m:
+        n, m, north, south = m, n, south, north
+
+    low = 0
+    high = n
+
+    while low <= high:
+        partition_north = (low + high) // 2
+        partition_south = (n + m + 1) // 2 - partition_north
+
+        max_left_north = north[partition_north - 1] if partition_north > 0 else float('-inf')
+        min_right_north = north[partition_north] if partition_north < n else float('inf')
+
+        max_left_south = south[partition_south - 1] if partition_south > 0 else float('-inf')
+        min_right_south = south[partition_south] if partition_south < m else float('inf')
+
+        if max_left_north <= min_right_south and max_left_south <= min_right_north:
+            if (n + m) % 2 == 0:
+                return (max(max_left_north, max_left_south) + min(min_right_north, min_right_south)) / 2
+            else:
+                return max(max_left_north, max_left_south)
+        elif max_left_north > min_right_south:
+            high = partition_north - 1
+        else:
+            low = partition_north + 1
+
+    raise ValueError('Input arrays are not sorted.')
+
+
+if __name__ == '__main__':
+    n = int(input())
+    m = int(input())
+    north = list(map(int, input().split()))
+    south = list(map(int, input().split()))
+
+    print(find_median(n, m, north, south))
