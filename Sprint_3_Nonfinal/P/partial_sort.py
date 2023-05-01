@@ -44,3 +44,30 @@ B3 = { 6, 5 }
 Выведите максимальное количество блоков, на которое можно разбить данные при использовании метода Частичной сортировки.
 """
 
+
+def max_partial_sort_blocks(n, a):
+    max_blocks = 0
+    max_ending_here = [0] * n
+    min_starting_here = [0] * n
+
+    max_ending_here[0] = a[0]
+    for i in range(1, n):
+        max_ending_here[i] = max(max_ending_here[i - 1], a[i])
+
+    min_starting_here[-1] = a[-1]
+    for i in range(n - 2, -1, -1):
+        min_starting_here[i] = min(min_starting_here[i + 1], a[i])
+
+    for i in range(n - 1):
+        if max_ending_here[i] < min_starting_here[i + 1]:
+            max_blocks += 1
+
+    return max_blocks + 1
+
+
+if __name__ == '__main__':
+    n = int(input())
+    a = list(map(int, input().split()))
+
+    result = max_partial_sort_blocks(n, a)
+    print(result)
