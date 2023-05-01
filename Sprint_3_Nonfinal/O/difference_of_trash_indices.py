@@ -49,3 +49,36 @@ _______________________________________________________________________________
 Выведите одно число — k-ую минимальную разницу.
 """
 
+
+def count_differences(areas, mid, n, k):
+    count = 0
+    j = 0
+    for i in range(n):
+        while j < n and areas[j] - areas[i] <= mid:
+            j += 1
+        count += (j - i - 1)
+    return count
+
+
+def kth_min_difference(n, areas, k):
+    areas.sort()
+    left = 0
+    right = areas[-1] - areas[0]
+
+    while left < right:
+        mid = left + (right - left) // 2
+        if count_differences(areas, mid, n, k) >= k:
+            right = mid
+        else:
+            left = mid + 1
+
+    return left
+
+
+if __name__ == '__main__':
+    n = int(input())
+    areas = list(map(int, input().split()))
+    k = int(input())
+
+    result = kth_min_difference(n, areas, k)
+    print(result)
