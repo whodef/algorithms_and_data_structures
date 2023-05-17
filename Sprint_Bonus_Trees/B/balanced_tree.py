@@ -34,32 +34,53 @@ Solution.java, для C# – Solution.cs. Для остальных языков
 Функция должна вернуть True, если дерево сбалансировано в соответствии с критерием из условия, иначе - False.
 """
 
-# ! change LOCAL to False before submitting !
-# set LOCAL to True for local testing
 
-LOCAL = False
+class Node:
+    def __init__(self, value, left=None, right=None):
+        self.value = value
+        self.right = right
+        self.left = left
 
-if LOCAL:
-    class Node:
-        def __init__(self, value, left=None, right=None):
-            self.value = value
-            self.right = right
-            self.left = left
+    def __repr__(self):
+        return f"Node({self.value})"
 
 
-def solution(root) -> bool:
-    #  Your code
-    #  “ヽ(´▽｀)ノ”
-    pass
+def check_tree_balance(root):
+    """Проверяет балансировку поддерева и вычисляет его высоту."""
+    is_balanced = True
+    left_subtree_height = 0
+    right_subtree_height = 0
+
+    if root.left is None and root.right is None:
+        return True, 1
+
+    if root.left is not None:
+        is_balanced, left_subtree_height = check_tree_balance(root.left)
+
+    if is_balanced and root.right is not None:
+        is_balanced, right_subtree_height = check_tree_balance(root.right)
+
+    tree_height = max(left_subtree_height, right_subtree_height) + 1
+
+    is_balanced = is_balanced and abs(left_subtree_height - right_subtree_height) <= 1
+
+    return is_balanced, tree_height
+
+
+def is_tree_balanced(root):
+    """Проверяет балансировку дерева."""
+    is_balanced, _ = check_tree_balance(root)
+    return is_balanced
 
 
 def test():
+    """Тестирует функцию is_tree_balanced."""
     node1 = Node(1)
     node2 = Node(-5)
     node3 = Node(3, node1, node2)
     node4 = Node(10)
     node5 = Node(2, node3, node4)
-    assert solution(node5)
+    assert is_tree_balanced(node5)
 
 
 if __name__ == '__main__':
