@@ -42,7 +42,7 @@ class Node:
         self.left = left
 
     def __repr__(self):
-        return f"Node({self.value})"
+        return f'Node({self.value})'
 
 
 def check_tree_balance(root):
